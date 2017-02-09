@@ -1,12 +1,15 @@
-<template>
-  <div>
-    <h1>r2cn</h1>
-    <p>R2 cn player website</p>
-  </div>
-</template>
+<style lang="less" scoped>
 
+</style>
+<template>
+    <router-view></router-view>
+</template>
 <script>
-  export default {
-    name: 'app'
-  };
+    export default {
+        watch:{
+            "$route":function(to,from){
+
+            }
+        }
+    }
 </script>

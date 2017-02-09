@@ -1,30 +1,65 @@
 {
   "name": "r2cn",
-  "version": "0.0.0",
-  "description": "R2 cn player website",
-  "private": false,
-  "keywords": [
-  ],
+  "version": "1.0.0",
+  "description": "``` R2中文专题站 R2天赋模拟器",
+  "main": "index.js",
   "scripts": {
-    "dev": "cooking watch -p",
-    "dist": "cooking build -p",
-    "deploy": "cooking build --no-color"
+    "build": "cross-env NODE_ENV=production webpack -p",
+    "dev": "node server",
+    "dev2": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --port 3000"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+r2cn.git"
-  },
-  "homepage": "r2cn#readme",
-  "bugs": {
-    "url": "r2cn/issues"
-  },
-  "author": "liwenda",
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "vue": "^2.0.1",
-    "babel-polyfill": "*"
-  },
   "devDependencies": {
-    "cooking-vue2": "*"
+    "animate.css": "^3.5.2",
+    "autoprefixer": "^6.5.3",
+    "autoprefixer-loader": "^3.2.0",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-helper-vue-jsx-merge-props": "^2.0.2",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-plugin-transform-vue-jsx": "^3.2.0",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "cross-env": "^3.1.3",
+    "css-loader": "^0.26.0",
+    "del": "^2.2.2",
+    "element-theme-default": "^1.1.5",
+    "element-ui": "^1.1.5",
+    "file-loader": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-sftp": "^0.1.5",
+    "html-webpack-plugin": "^2.24.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "moment": "^2.17.1",
+    "nprogress": "^0.2.0",
+    "pinyin": "^2.8.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "vue-loader": "^10.0.0",
+    "vue-popper": "^0.3.8",
+    "vue-resource": "^1.0.3",
+    "vue-template-compiler": "^2.1.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "vue": "^2.1.0",
+    "vue-router": "^2.0.3",
+    "vuex": "^2.0.0"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "element-theme": {
+    "browsers": ["ie > 9", "last 2 versions"],
+    "out": "./src/theme",
+    "config": "./src/element-variables.css",
+    "theme": "element-theme-default",
+    "minimize": false
   }
 }

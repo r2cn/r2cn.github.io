@@ -1,0 +1,177 @@
+<style lang="less" scoped>
+	.rowSpan span{
+		line-height: 60px;
+	}
+	.button-bar{
+		.el-button{
+			float: right;
+		}
+		.el-row{
+			float: left;
+			line-height:36px;
+		}
+	}
+</style>
+<template>
+	<div>
+		<common-layout :crumbs=crumbs>
+			<div class="content" slot="content">
+				<div class="search-bar">
+					<el-form :inline="true" :model="formSearch" class="demo-form-inline">
+						<el-form-item>
+							<el-date-picker
+									v-model="formSearch.date"
+									type="daterange"
+									align="right"
+									placeholder="选择日期范围"
+									:picker-options="pickerOptions"
+									style="width: 220px">
+							</el-date-picker>
+						</el-form-item>
+						<el-form-item>
+							<el-input v-model="formSearch.purchaseno" placeholder="请输入物料名称"></el-input>
+						</el-form-item>
+						<el-form-item>
+							<el-button type="primary" @click="onSubmit">查询</el-button>
+						</el-form-item>
+					</el-form>
+				</div>
+				<div class="table-content">
+					<div class="button-bar">
+						<el-button @click="handleExport">导出</el-button>
+						<!--<el-button>打印</el-button>-->
+						<el-row>
+							<el-col :span="24">总计：<span class="orange">&yen;{{totalAmount|number}}</span></el-col>
+						</el-row>
+					</div>
+					<el-table :data="detail" height="442" border style="width:100%">
+						<el-table-column  label="序号" width="70" inline-template>
+							<span>{{$index+1+pageData.pageSize*(pageData.pageNo-1)}}</span>
+						</el-table-column>
+						<el-table-column prop="materialName" label="物料名称" min-width="120"></el-table-column>
+						<el-table-column prop="materialUnitName" label="进货单位" min-width="120"></el-table-column>
+						<el-table-column prop="purchasePrice" label="采购均价" min-width="80" inline-template>
+							<span>{{row.purchasePrice|number}}</span>
+						</el-table-column>
+						<el-table-column prop="purchaseCount" label="采购数量" min-width="80"></el-table-column>
+						<el-table-column prop="payment" label="结算金额" min-width="80" inline-template>
+							<span>{{row.payment|number}}</span>
+						</el-table-column>
+					</el-table>
+					<div class="pagination">
+						<el-pagination
+								@size-change="handleSizeChange"
+								@current-change="handleCurrentChange"
+								:current-page="pageData.pageNo"
+								:page-sizes="[10, 20, 30, 40]"
+								:page-size="pageData.pageSize"
+								layout="total, sizes, prev, pager, next, jumper"
+								:total="pageData.totalCount">
+						</el-pagination>
+					</div>
+				</div>
+			</div>
+		</common-layout>
+		<transition v-on:leave="refresh">
+			<router-view></router-view>
+		</transition>
+	</div>
+</template>
+<script>
+	import {mapState} from 'vuex';
+	import moment from 'moment';
+	export default {
+		data() {
+			var crumbs = [
+				{path: '/', name: '首页'},
+				{path: '', name: '报表'},
+				{path: '/reports/materialReports/materialList', name: '物料类别汇总'},
+				{path: '/reports/materialReports/materialListDetail', name: '物料类别详情'},
+			];
+			return {
+				crumbs,
+				formSearch: {
+					date: [],
+					status: '',
+					purchaseno: ''
+				},
+				pickerOptions: {
+					shortcuts: [{
+						text: '最近一周',
+						onClick(picker) {
+							const end = new Date();
+							const start = new Date();
+							start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+							picker.$emit('pick', [start, end]);
+						}
+					}, {
+						text: '最近一个月',
+						onClick(picker) {
+							const end = new Date();
+							const start = new Date();
+							start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+							picker.$emit('pick', [start, end]);
+						}
+					}, {
+						text: '最近三个月',
+						onClick(picker) {
+							const end = new Date();
+							const start = new Date();
+							start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+							picker.$emit('pick', [start, end]);
+						}
+					}]
+				},
+				filter: '',
+				detail: [],
+                totalAmount:0,
+				pageData: {
+					pageNo: 1,
+					pageSize: 10,
+					totalCount: 0,
+					totalPage: 1
+				}
+			}
+		},
+		methods: {
+			onSubmit() {
+				this.refresh();
+			},
+			/*分页回调*/
+			handleSizeChange(val) {
+				console.log(`每页 ${val} 条`);
+				this.pageData.pageSize = val;
+				this.refresh()
+			},
+			handleCurrentChange(val) {
+				console.log(`当前页: ${val}`);
+				this.pageData.pageNo = val;
+				this.refresh()
+			},
+			refresh(){
+				let requestData = {
+					"pageNo": this.pageData.pageNo,
+					"pageSize": this.pageData.pageSize,
+					"materialTypeId": this.$route.query.id
+				};
+				utils.post(urls.materialReportDetail, requestData, this).then(function (data) {
+					if (data.code == 200) {
+						this.pageData.pageNo = data.result.pageNo;
+						this.pageData.pageSize = data.result.pageSize;
+						this.pageData.totalCount = data.result.totalCount;
+						this.pageData.totalPage = data.result.totalPage;
+						this.detail = data.result.pmsMaterialTypeReportDetailVos;
+						this.totalAmount = data.result.totalAmount;
+					}
+				});
+			},
+            handleExport(){
+                utils.export('/pms/report/material/type/detail/export.do',{"materialTypeId":this.$route.query.id})
+            }
+		},
+		created(){
+			this.refresh()
+		},
+		computed: mapState({user: state => state.user}),
+	}
+</script>

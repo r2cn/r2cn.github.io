@@ -1,0 +1,45 @@
+
+html *{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+body{
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+    background-color: #e4e4e4;
+}
+input,button,a,textarea{
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, menu, div {
+    display: block;
+}
+h1,h2,h3,h4,h5,h6{ font-weight:normal;}
+ol,ul{ list-style:none;}
+img,fieldset{ border:0 none;}
+a{
+    text-decoration: none;
+}
+button,a{
+	outline: none;
+}
+button{
+	cursor: pointer;
+}
+div,button,a,img{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+* html .clearfix             { zoom: 1; }
+*:first-child+html .clearfix { zoom: 1; }
+ul,li,dl,dd,dt{
+    list-style:none;
+}
