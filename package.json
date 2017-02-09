@@ -1,0 +1,30 @@
+{
+  "name": "r2cn",
+  "version": "0.0.0",
+  "description": "R2 cn player website",
+  "private": false,
+  "keywords": [
+  ],
+  "scripts": {
+    "dev": "cooking watch -p",
+    "dist": "cooking build -p",
+    "deploy": "cooking build --no-color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+r2cn.git"
+  },
+  "homepage": "r2cn#readme",
+  "bugs": {
+    "url": "r2cn/issues"
+  },
+  "author": "liwenda",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.0.1",
+    "babel-polyfill": "*"
+  },
+  "devDependencies": {
+    "cooking-vue2": "*"
+  }
+}
