@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./config/');
 const IS_ENV = process.env.NODE_ENV == 'production';
-
-
 /*var plugins = [];
 if (IS_ENV) { //生产环境
     plugins.push(new webpack.DefinePlugin({
@@ -32,8 +30,6 @@ plugins.push(
         utils:'utils'
     }),
 );*/
-
-
 module.exports = {
     entry: ['./src/main.js'], //编译入口文件
     output: {
@@ -82,16 +78,18 @@ module.exports = {
             hash:true
         }),
         new webpack.ProvidePlugin({
-            urls:'urls',
-            utils:'utils'
-        }),
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ],
     resolve: {
         extensions: ['', '.js', '.vue', '.jsx'], //后缀名自动补全
         alias: {
             vue: 'vue/dist/vue.js', //webpack打包时，需要设置别名
-            urls: ROOT_PATH+'/src/config/urls.js',//url
-            utils: ROOT_PATH+'/src/config/utils.js',//util
+            // webpack 使用 jQuery，如果是自行下载的
+            // 'jquery': path.resolve(__dirname, '../src/assets/libs/jquery/jquery.min'),
+            // 如果使用NPM安装的jQuery
+            jquery: 'jquery'
         }
     },
     vue: {

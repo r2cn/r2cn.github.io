@@ -1,10 +1,15 @@
 <style lang="less" scoped>
-    @import "../less/navmenu.less";
+    .el-menu-horizontal{
+        width: 1136px;
+        margin: 0 auto;
+    }
+    .el-menu--dark{
+        background-color: transparent;
+    }
 </style>
 <template>
-    <el-menu mode="horizontal" unique-opened  menu-trigger="hover" :default-active="activePath" class="el-menu-vertical" :router=true theme="dark" @open="handleOpen"
-             @close="handleClose">
-        <div v-for="(item, index) in menus" v-if="!!item.auth" class="items-wrap">
+    <el-menu theme="dark"  mode="horizontal" unique-opened  :default-active="activePath" class="el-menu-horizontal" :router=true @open="handleOpen">
+        <div v-for="(item, index) in menus"  class="items-wrap">
             <el-menu-item :index="item.path" v-if="!item.group">
                 <i :class="item.icon"></i>{{item.name}}
             </el-menu-item>
@@ -18,44 +23,33 @@
     </el-menu>
 </template>
 <script>
-    import { mapState } from 'vuex'
     export default {
         data(){
             /*当前激活的菜单*/
-            var activePath = '/';
+            var activePath = '/talent';
             return {
                 activePath,
                 menus: [
-                    {path: '/', name: '首页', icon: 'icon-toolbar_ico_home',pmsModuleCode:'PMS001',auth:true},
-                    {path: '/purchase', name: '开采购单', icon: 'icon-toolbar_ico_caigoudan',pmsModuleCode:'PMS002',auth:true},
-                    {path: '/receives', name: '收货', icon: 'icon-toolbar_ico_shouhuodan',pmsModuleCode:'PMS003',auth:true},
-                    {path: '/checkout', name: '结算', icon: 'icon-toolbar_ico_jiesuandan',pmsModuleCode:'PMS004',auth:true},
                     {
-                        path: '/reports', name: '查看报表', icon: 'icon-toolbar_ico_baobiao',
+                        path: '/talent', name: '天赋模拟器', icon: 'el-icon-setting',
                         group:[
-                            {path: '/reports/settleOrder/settleOrderList', name: '结算单汇总'},
-                            {path: '/reports/settleType/settleTypeList', name: '结算方式汇总'},
-                            {path: '/reports/materialReports/materialList', name: '物料类别汇总'},
-                            {path: '/reports/purReports/purchaseList', name: '采购汇总'},
-                            {path: '/reports/settlement/settlementList', name: '结算对象汇总'},
-                        ],
-                        pmsModuleCode:'PMS005',
-                        auth:true,
-                        isActive:false
+                            {path: '/talent/knight', name: '骑士'},
+                            {path: '/talent/elf', name: '精灵'},
+                            {path: '/talent/rangers', name: '游侠'},
+                            {path: '/talent/assassin', name: '刺客'},
+                            {path: '/talent/summoner', name: '召唤师'}
+                        ]
                     },
                     {
-                        path:'/settings',name: '基础设置', icon: 'icon-toolbar_ico_setting',
-                        group: [
-                            {path: '/settings/handlePurchase/index', name: '供应商管理'},
-                            {path: '/settings/handleMateriel/index', name: '物料管理'},
-                            {path: '/settings/handleUnit/index', name: '单位管理'},
-                            {path: '/settings/handleType/index', name: '类别管理'},
-                            {path: '/settings/handleRole/index', name: '岗位管理'},
-                            {path: '/settings/handleUser/index', name: '员工管理'},
-                        ],
-                        pmsModuleCode:'PMS006',
-                        auth:true,
-                        isActive:false
+                        path:'/special',name: '天赋推荐', icon: 'el-icon-star-on',
+                        group:[
+                            {path: '/talent/knight/id/1', name: '狂暴骑士'},
+                            {path: '/talent/knight/id/2', name: '平衡骑士'},
+                            {path: '/talent/knight/id/3', name: '防御骑士'},
+                            {path: '/talent/elf/id/1', name: '光明精灵'},
+                            {path: '/talent/elf/id/2', name: '平衡精灵'},
+                            {path: '/talent/elf/id/3', name: '黑暗精灵'},
+                        ]
                     }
                 ]
             }
@@ -66,57 +60,10 @@
             },
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
-            },
-            handleUserRole(){
-                let modules = this.user.pmsModuleList;
-                var that =this;
-                this.menus.forEach(function(n,key){
-                    let firstIndex = modules.findIndex(module => module.pmsModuleCode == n.pmsModuleCode);
-                    if(firstIndex == -1){
-                        n.auth =false;
-                    }
-                })
-            },
-            handleActiveMenu(){
-                var that = this;
-                if (this.$route.path == '/') {
-                    this.activePath = '/';
-                } else {
-                    var parent = this.$route.path.substring(0, this.$route.path.lastIndexOf("/")+1);
-                    for (var n of this.menus){
-                        //this.menus.forEach(function (n, key) {
-                        if(n.group){
-                            for (var data of n.group){
-                                if( data.path.indexOf(parent) > -1){
-                                    that.activePath = data.path;
-                                    n.isActive =true;
-                                    break;
-                                }
-                            }
-
-                        }else{
-                            if (n.path !='/' ) {
-                                if(parent !=''){
-                                    if(parent.indexOf(n.path) > -1 || that.$route.path == n.path){
-                                        that.activePath = n.path;
-                                        break;
-                                    }
-                                }else if(that.$route.path == n.path){
-                                    that.activePath = n.path;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
         created: function () {
-            this.handleUserRole();
-            this.handleActiveMenu();
-        },
-        computed: mapState({
-            user: state => state.user
-        })
+
+        }
     }
 </script>

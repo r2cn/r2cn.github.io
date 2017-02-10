@@ -1,11 +1,10 @@
 <style lang="less" scoped>
     .el-breadcrumb{
-        height: 60px;
-        line-height: 60px;
-        background-color: #fff;
+        height: 32px;
+        line-height: 32px;
+        background-color: rgba(23,24,25,0.8);
         padding-left: 20px;
-        font-size: 18px;
-        margin-bottom: 10px;
+        font-size: 12px;
     }
 </style>
 <template>
