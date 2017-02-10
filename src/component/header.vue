@@ -3,10 +3,11 @@
 		color: #fff;
 		position: relative;
 		text-align: center;
+		width: 1136px;
+		margin: 0 auto;
 		background: url(../img/bg.jpg) center top no-repeat;
 		.left {
 			float: left;
-			padding-left: 218px;
 		}
 		.center {
 			position: absolute;

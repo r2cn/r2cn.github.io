@@ -2,11 +2,8 @@
 	.footer{
 		color: rgb(191, 203, 217);
 		padding-bottom: 20px;
-	}
-	@media screen and (min-height:768px){
-		.footer{
-			display: block;
-		}
+		width: 1136px;
+		margin: 0 auto;
 	}
 	.footer ul{
 		text-align: center;
