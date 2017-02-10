@@ -30,7 +30,7 @@
                 <slot name="content">这里显示正文</slot>
             </div>
         </div>
-
+        <common-footer></common-footer>
     </div>
 </template>
 

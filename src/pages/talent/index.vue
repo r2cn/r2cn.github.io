@@ -18,14 +18,13 @@
 						<a href="javascript:;" class="btn-reset" id="reset-tallent">重置天赋点</a>
 						<a href="javascript:;" class="btn-copy" id="btn-copy">复制天赋点</a>
 						<div class="foot__share" id="share-box">
-							<span>分享我的天赋加点:</span>
+							<span>分享R2天赋:</span>
 							<input class="share-text">
 							<div class="bdsharebuttonbox">
 								<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
 								<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
 								<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 								<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-								<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
 								<a href="#" class="bds_more" data-cmd="more"></a>
 							</div>
 						</div>
@@ -37,7 +36,7 @@
 </div>
 </template>
 <script>
-	import '../../lib/calculator.js'
+	import Calculator from '../../lib/calculator.js'
     export default {
 		data() {
 			return {
@@ -48,6 +47,11 @@
 
         },
 	    created(){
+
+	    },
+	    mounted(){
+            let calculator = new Calculator();
+            calculator.init();
 	    },
 	    computed:{
             roleName() {

@@ -68,7 +68,7 @@ button {
     width: 130px;
     padding: 3px;
     font-size: 16px;
-    color: #fff;
+    color:rgb(191, 203, 217);
     margin: 0;
     border: 1px outset #3467A7;
     border-radius: 4px;
@@ -112,8 +112,8 @@ button:active {
     padding-left: 7px;
     text-align: left;
     position: absolute;
-    color: #fff;
-    font-size: 22px;
+    color:rgb(191, 203, 217);
+    font-size: 15px;
 }
 
 #tree-summaries .Ferocity {
@@ -164,7 +164,7 @@ button:active {
 
 @-webkit-keyframes animation_available {
     25% {
-        border-color: #fff;
+        border-color:rgb(191, 203, 217);
     }
 
     100% {
@@ -174,7 +174,7 @@ button:active {
 
 @keyframes animation_available {
     25% {
-        border-color: #fff;
+        border-color:rgb(191, 203, 217);
     }
 
     100% {
@@ -209,7 +209,7 @@ button:active {
 
 @-webkit-keyframes animation_full {
     25% {
-        border-color: #fff;
+        border-color:rgb(191, 203, 217);
     }
 
     100% {
@@ -348,7 +348,7 @@ button:active {
     margin: 16px auto;
     min-height: 200px;
     border: 1px solid #efefef;
-    background-color: #fff;
+    background-color:rgb(191, 203, 217);
     padding: 9px 15px 20px;
 }
 
@@ -421,7 +421,7 @@ button:active {
 }
 
 .ZQ__talent .talent__head em {
-    color: #fff;
+    color:rgb(191, 203, 217);
 }
 
 .ZQ__talent .tallent__con {
@@ -446,7 +446,7 @@ button:active {
     line-height: 32px;
     font-size: 14px;
     margin-left: 14px;
-    color: #fff;
+    color:rgb(191, 203, 217);
     outline: 0 none;
     user-select: none;
     -webkit-user-select: none;
@@ -455,7 +455,7 @@ button:active {
 
 .btn-reset:hover,.btn-copy:hover {
     text-decoration: none;
-    color: #fff;
+    color:rgb(191, 203, 217);
 }
 
 .btn-reset {
@@ -489,7 +489,7 @@ button:active {
 
 .foot__share span {
     line-height: 32px;
-    color: #fff;
+    color:rgb(191, 203, 217);
     padding-left: 16px;
     padding-right: 10px;
     font-size: 12px;
@@ -626,7 +626,7 @@ button:active {
     height: 28px;
     border: 1px solid #cdcdcd;
     padding: 0 5px;
-    background-color: #fff;
+    background-color:rgb(191, 203, 217);
     margin-bottom: 16px;
 }
 
@@ -715,7 +715,7 @@ button:active {
 }
 
 .hero__list li:hover em {
-    color: #fff;
+    color:rgb(191, 203, 217);
 }
 
 .ZQ-box {
@@ -724,5 +724,5 @@ button:active {
     padding: 12px 16px;
     border: 1px solid #EFEFEF;
     font-size: 12px;
-    background-color: #fff;
+    background-color:rgb(191, 203, 217);
 }

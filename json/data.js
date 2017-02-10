@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/2/10.
  */
-var data = [
+module.exports = [
     // 凶猛
     [
         {
